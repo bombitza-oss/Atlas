@@ -47,7 +47,7 @@ const quickQuestions = [
 const callAPI = async (systemPrompt: string, userMessage: string, maxTokens: number = 1000): Promise<string> => {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST", headers: { "Content-Type": "application/json", "x-api-key": "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", "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
-    body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: maxTokens, system: systemPrompt, messages: [{ role: "user", content: userMessage }] }),
+    body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: maxTokens, system: systemPrompt, messages: [{ role: "user", content: userMessage }] }),
   });
   const data = await res.json();
   return data.content.map((i: { type: string; text?: string }) => i.type === "text" ? i.text : "").filter(Boolean).join("\n");
